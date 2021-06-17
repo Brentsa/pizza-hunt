@@ -22,7 +22,7 @@ const commentController = {
     },
     //Add a reply to the comment
     addReply({params, body}, res){
-        Comment.findOneAndUpdate({_id: params.commentId}, {$push: {replies: body}}, {new: true})
+        Comment.findOneAndUpdate({_id: params.commentId}, {$push: {replies: body}}, {new: true, runValidators: true})
         .then(dbPizzaData => {
             if(!dbPizzaData){return res.status(404).json({message: 'No pizza found with this id!'})}
 

@@ -10,8 +10,16 @@ const ReplySchema = new Schema(
             type: Schema.Types.ObjectId,
             default: () => new Types.ObjectId()
         },
-        replyBody: String,
-        writtenBy: String,
+        replyBody: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        writtenBy: {
+            type: String,
+            required: true,
+            trim: true
+        },
         createdAt: {
             type: Date,
             default: Date.now,
@@ -26,8 +34,16 @@ const ReplySchema = new Schema(
 //Define a schema for comments
 const CommentSchema = new Schema(
     {
-        writtenBy: String,
-        commentBody: String,
+        writtenBy: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        commentBody: {
+            type: String,
+            required: true,
+            trim: true
+        },
         //Use the reply schema to validate data for replies
         replies: [ReplySchema],
         createdAt: {
